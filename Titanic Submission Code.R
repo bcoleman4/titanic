@@ -43,3 +43,13 @@ nrow(my_solution2)
 
 # Write your solution to a csv file with the name my_solution2.csv
 write.csv(my_solution2, file = "/Users/Brian/Desktop/Kaggle/Titanic/my_solution2.csv", row.names = FALSE)
+
+# create a new train set with the new variable
+train_two <- train
+train_two$family_size <- (train$SibSp + train$Parch + 1)
+
+# Create a new decision tree my_tree_three
+my_tree_four <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked + family_size, data=train_two, method="class")
+
+# Visualize your new decision tree
+fancyRpartPlot(my_tree_four)
