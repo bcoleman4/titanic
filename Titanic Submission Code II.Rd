@@ -3,8 +3,10 @@ library(rpart)
 library(randomForest)
 
 # Loading data from local files
-train <- read.csv("/Users/Brian/Documents/Programming/Kaggle/Titanic/train.csv")
-test <- read.csv("/Users/Brian/Documents/Programming/Kaggle/Titanic/test.csv")
+train <- read.csv("~/Desktop/Kaggle/Titanic/train.csv")
+test <- read.csv("~/Desktop/Kaggle/Titanic/test.csv")
+train <- read.csv("~/Documents/Programming/Kaggle/Titanic/train.csv")
+test <- read.csv("~/Documents/Programming/Kaggle/Titanic/test.csv")
 
 # Your train and test set are still loaded in
 str(train)
@@ -27,23 +29,23 @@ test$Fare[153] <- median(train$Fare, na.rm=TRUE)
 # create Title column
 i <- 1
 while (i <= nrow(train)){
-ifelse(grepl("Mr.", train$Name[i]), train$Title[i] <- "Mr", 
-ifelse(grepl("Mrs.", train$Name[i]), train$Title[i] <- "Mrs",
-ifelse(grepl("Master.", train$Name[i]), train$Title[i] <- "Master",
-ifelse(grepl("Miss.", train$Name[i]), train$Title[i] <- "Miss", 
-train$Title[i] <- 
-if (train$Age[i] >= 16) {
-	train$Title[i][train$Sex[i]=="male"] <- "Mr"
-} 
-else
-	{train$Title[i][train$Sex[i]=="female"] <- "Mrs"
-	}	
-if  (train$Age[i] < 16) {
-	train$Title[i][train$Sex[i]=="male"] <- "Master"
-}
-else
-	{train$Title[i][train$Sex[i]=="female"] <- "Miss"
-	}
+ifelse(grepl("Mr.", train$Name[i]), train$Title[i] <- "mr", 
+ifelse(grepl("Mrs.", train$Name[i]), train$Title[i] <- "mrs",
+ifelse(grepl("Master.", train$Name[i]), train$Title[i] <- "master",
+ifelse(grepl("Miss.", train$Name[i]), train$Title[i] <- "miss", "NA"
+#train$Title[i] <- 
+#if (train$Age[i] >= 16) {
+#	train$Title[i][train$Sex[i]=="male"] <- "mr"
+#} 
+#else
+#	{train$Title[i][train$Sex[i]=="female"] <- "mrs"
+#	}	
+#if  (train$Age[i] < 16) {
+#	train$Title[i][train$Sex[i]=="male"] <- "master"
+#}
+#else
+#	{train$Title[i][train$Sex[i]=="female"] <- "miss"
+#	}
 ))))
 i = i+1
 }
@@ -79,4 +81,4 @@ my_prediction <- predict(my_forest, test, type = "class")
 my_solution <- data.frame(PassengerId = test$PassengerId, Survived = my_prediction)
 
 # Write your solution away to a csv file with the name my_solution.csv
-write.csv(my_solution, file = "/Users/Brian/Documents/Programming/Kaggle/Titanic/random_forest_solution.csv", row.names = FALSE)
+write.csv(my_solution, file = "/Users/Brian/Documents/Programming/Kaggle/Titanic/random_forest_solution_II.csv", row.names = FALSE)
