@@ -53,3 +53,4 @@ my_tree_four <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Emb
 
 # Visualize your new decision tree
 fancyRpartPlot(my_tree_four)
+
