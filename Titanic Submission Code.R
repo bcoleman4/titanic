@@ -3,54 +3,88 @@ library(rpart)
 library(rattle)
 library(RGtk2)
 
+#############################################################################
+################ This version is running Excel cleansed data ################
+#############################################################################
+
 # Loading data from local files
-train <- read.csv("/Users/Brian/Desktop/Kaggle/Titanic/train.csv")
-test <- read.csv("/Users/Brian/Desktop/Kaggle/Titanic/test.csv")
+trainc <- read .csv("/Users/Brian/Documents/Programming/Kaggle/Titanic/trainc.csv")
+test <- read.csv("/Users/Brian/Documents/Programming/Kaggle/Titanic/test.csv")
 
 # Your train and test set are still loaded in
-str(train)
+str(trainc)
 str(test)
 
-# Build the decision tree
-my_tree_two <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked, data=train, method="class")
+# Build the decision tree four
+my_tree_four <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked + Title, data=trainc, method="class")
 
 # Make your prediction using the test set
-my_prediction <- predict(my_tree_two, test, type = "class")
+my_prediction_four <- predict(my_tree_four, test, type = "class")
 
 # Create a data frame with two columns: PassengerId & Survived. Survived contains your predictions
-my_solution <- data.frame(PassengerId = test$PassengerId, Survived = my_prediction)
+my_solution_four <- data.frame(PassengerId = test$PassengerId, Survived = my_prediction_four)
 
 # Check that your data frame has 418 entries
-nrow(my_solution)
+nrow(my_solution_four)
 
 # Write your solution to a csv file with the name my_solution.csv
-write.csv(my_solution, file = "/Users/Brian/Desktop/Kaggle/Titanic/my_solution.csv", row.names = FALSE)
-
-# Create a new decision tree my_tree_three
-my_tree_three <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked, data=train, method="class", control = rpart.control(cp = 0, minsplit = 50))
-  
-# Visualize your new decision tree
-fancyRpartPlot(my_tree_three)
-
-# Make your prediction using the test set
-my_prediction2 <- predict(my_tree_three, test, type = "class")
-
-# Create a data frame with two columns: PassengerId & Survived. Survived contains your predictions
-my_solution2 <- data.frame(PassengerId = test$PassengerId, Survived = my_prediction2)
-
-# Check that your data frame has 418 entries
-nrow(my_solution2)
-
-# Write your solution to a csv file with the name my_solution2.csv
-write.csv(my_solution2, file = "/Users/Brian/Desktop/Kaggle/Titanic/my_solution2.csv", row.names = FALSE)
-
-# create a new train set with the new variable
-train_two <- train
-train_two$family_size <- (train$SibSp + train$Parch + 1)
-
-# Create a new decision tree my_tree_three
-my_tree_four <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked + family_size, data=train_two, method="class")
+write.csv(my_solution_four, file = "/Users/Brian/Documents/Programming/Kaggle/Titanic/my_solution_four.csv", row.names = FALSE)
 
 # Visualize your new decision tree
 fancyRpartPlot(my_tree_four)
+
+#############################################################################
+######### End of cleansed version with the rest commented out ###############
+#############################################################################
+
+# Loading data from local files
+#train <- read.csv("/Users/Brian/Desktop/Kaggle/Titanic/train.csv")
+#test <- read.csv("/Users/Brian/Desktop/Kaggle/Titanic/test.csv")
+
+# Your train and test set are still loaded in
+#str(train)
+#str(test)
+
+# Build the decision tree
+#my_tree_two <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked, data=train, method="class")
+
+# Make your prediction using the test set
+#my_prediction <- predict(my_tree_two, test, type = "class")
+
+# Create a data frame with two columns: PassengerId & Survived. Survived contains your predictions
+#my_solution <- data.frame(PassengerId = test$PassengerId, Survived = my_prediction)
+
+# Check that your data frame has 418 entries
+#nrow(my_solution)
+
+# Write your solution to a csv file with the name my_solution.csv
+#write.csv(my_solution, file = "/Users/Brian/Desktop/Kaggle/Titanic/my_solution.csv", row.names = FALSE)
+
+# Create a new decision tree my_tree_three
+#my_tree_three <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked, data=train, method="class", control = rpart.control(cp = 0, minsplit = 50))
+  
+# Visualize your new decision tree
+#fancyRpartPlot(my_tree_three)
+
+# Make your prediction using the test set
+#my_prediction2 <- predict(my_tree_three, test, type = "class")
+
+# Create a data frame with two columns: PassengerId & Survived. Survived contains your predictions
+#my_solution2 <- data.frame(PassengerId = test$PassengerId, Survived = my_prediction2)
+
+# Check that your data frame has 418 entries
+#nrow(my_solution2)
+
+# Write your solution to a csv file with the name my_solution2.csv
+#write.csv(my_solution2, file = "/Users/Brian/Desktop/Kaggle/Titanic/my_solution2.csv", row.names = FALSE)
+
+# create a new train set with the new variable
+#train_two <- train
+#train_two$family_size <- (train$SibSp + train$Parch + 1)
+
+# Create a new decision tree my_tree_three
+#my_tree_four <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked + family_size, data=train_two, method="class")
+
+# Visualize your new decision tree
+#fancyRpartPlot(my_tree_four)
 
